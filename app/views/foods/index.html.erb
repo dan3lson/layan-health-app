@@ -1,0 +1,13 @@
+<h1>Foods Index Page</h1>
+
+<p>
+	<%= link_to "Home", root_path %>
+</p>
+
+<% @foods.each do |food| %>
+	<p>
+		Name: <%= food.name %>
+		<br>
+		Calories: <%= food.calories %>
+	</p>
+<% end %>
