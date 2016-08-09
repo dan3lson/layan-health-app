@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160808081820) do
+ActiveRecord::Schema.define(version: 20160809120025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "food_nut_vals", force: :cascade do |t|
+    t.integer  "food_id",    null: false
+    t.integer  "nut_val_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "food_nut_vals", ["food_id", "nut_val_id"], name: "index_food_nut_vals_on_food_id_and_nut_val_id", using: :btree
+  add_index "food_nut_vals", ["food_id"], name: "index_food_nut_vals_on_food_id", using: :btree
+  add_index "food_nut_vals", ["nut_val_id"], name: "index_food_nut_vals_on_nut_val_id", using: :btree
 
   create_table "food_quantities", force: :cascade do |t|
     t.integer  "food_id",     null: false
@@ -32,6 +43,21 @@ ActiveRecord::Schema.define(version: 20160808081820) do
     t.integer  "calories",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "nut_vals", force: :cascade do |t|
+    t.integer  "value",      null: false
+    t.string   "name",       null: false
+    t.integer  "unit",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quantities", force: :cascade do |t|
+    t.string   "serving_size", null: false
+    t.string   "value",        null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
 end
